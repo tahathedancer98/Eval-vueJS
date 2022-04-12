@@ -19,4 +19,11 @@ npm run serve
 npm run dev
 ```
 
+### B- Compte de test
+
+```
+mail : taha@mail.com <br/>
+password : 123456 <br/>
+```
+
 
