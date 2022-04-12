@@ -45,6 +45,7 @@ export default {
                 }
                 this.$store.commit({type: 'setUserConnected' , user : commit})
                 if(this.$store.status == true){
+                  this.$emit('statusConnexion')
                   this.$router.push('/')
                 } 
               }

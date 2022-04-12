@@ -29,7 +29,7 @@
             
       </div> 
       <div class="col-md-9">
-        <RouterView />
+        <RouterView @statusConnexion="reloadPage"/>
       </div> 
     </div>
   </header>
