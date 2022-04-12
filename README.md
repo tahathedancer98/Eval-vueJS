@@ -22,10 +22,11 @@ npm run dev
 ### B- Compte de test
 
 Email : 
+```sh
+taha@mail.com
 ```
-taha@mail.com```
 Password :
-```
+```sh
 123456
 ```
 
