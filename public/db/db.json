@@ -1,0 +1,12 @@
+{
+  "utilisateurs": [
+    {
+      "pseudo": "Taha",
+      "email": "taha@mail.com",
+      "password": "123456",
+      "urlImgProfil": "https://thispersondoesnotexist.com/image",
+      "id": 1
+    }
+  ],
+  "articles": []
+}
