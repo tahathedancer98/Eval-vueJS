@@ -1,21 +1,22 @@
 # Eval-VueJS
 
-## 1- Il faut choisir la branch master
 
-## 2- Project Setup
+## 1- Project Setup
 
 ```sh
 npm install
 ```
 
-### Start projet
-
-```sh
-npm run dev
-```
-### Start Database
+### A- Start Database
 
 ```sh
 npm run serve
 ```
+
+### B- Start projet
+
+```sh
+npm run dev
+```
+
 
