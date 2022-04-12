@@ -1,6 +1,8 @@
 # Eval-VueJS
 
-## Project Setup
+## 1- Il faut choisir la branch master
+
+## 2- Project Setup
 
 ```sh
 npm install
