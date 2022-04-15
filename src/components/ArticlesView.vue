@@ -1,7 +1,7 @@
 <template>
-    <b style="margin-left:50em;" v-if="this.$store.status">Bonjour {{this.$store.pseudo}}</b>
+    <b style="margin-left:50em;" v-if="loggedIn === true">Bonjour {{this.pseudo}}</b>
     <!-- Ajouter un nouveau article si l'utilisateur est connecté -->
-    <div class="row quoiDeNeuf" v-if="this.$store.status === true">
+    <div class="row quoiDeNeuf" v-if="loggedIn === true">
         <h4>Quoi de neuf ? <i class="fa-solid fa-house"></i></h4>
         <form>
             <textarea class="form-control" placeholder="laisser un nouveau post" name="contenu" v-model="contenu"></textarea>
@@ -11,10 +11,10 @@
         </form>
     </div>
     <!-- S'il n'ya pas d'articles -->
-    <div v-if="this.$store.articles.length == 0 ">
+    <div v-if="this.$store.articles == undefined ">
         <h2>Il n'existe pas d'articles pour le moment.</h2>
-        <h2 v-if="!this.$store.status">Connectez/Inscrivez-vous et créer vos articles.</h2>
-        <h2 v-if="this.$store.status">Créer vos articles.</h2>
+        <h2 v-if="!loggedIn">Connectez/Inscrivez-vous et créer vos articles.</h2>
+        <h2 v-if="loggedIn">Créer vos articles.</h2>
     </div>
     <!-- Les articles -->
     <div v-for="(article, index) in this.$store.articles " :key="index" :class="post">
@@ -44,10 +44,10 @@
                 <div class="float-child-element"><i class="fa-regular fa-comment"><span class="nb nbComment">{{article.commentaires.length}}</span></i></div>
                 <div class="float-child-element">
                     <i class="fa-regular fa-thumbs-up nb-like">
-                        <button v-if="this.$store.status === true" class="nb nbLike" @click="(e) => {like(e,article)}">
+                        <button v-if="loggedIn === true" class="nb nbLike" @click="(e) => {like(e,article)}">
                             {{article.like}}
                         </button>
-                        <span v-if="this.$store.status === false" class="nb nbLike">
+                        <span v-if="loggedIn === false" class="nb nbLike">
                             {{article.like}}
                         </span>
                     </i>
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row addCommentaire" v-if="this.$store.status === true">
+                <div class="row addCommentaire" v-if="loggedIn === true">
                     <hr style="margin-left:0.5em;margin-top:1em;">
                     <h4>Ajouter un commentaire <i class="fa-regular fa-comment"> :</i></h4>
                     <form>
@@ -94,7 +94,18 @@ export default {
             contenuCommentaire : "",
             articles : [],
             users : [],
+            loggedIn : false,
+            pseudo : ''
         }
+    },
+    created(){
+        if (localStorage.getItem("loggedIn") === "true")  {
+            this.loggedIn = true
+            this.pseudo = localStorage.getItem("pseudoUser")
+        }else{
+            this.loggedIn = false
+            this.pseudo = ''
+        } 
     },
     methods:{
         nouveauArticle(e){
@@ -179,8 +190,12 @@ export default {
                 this.$forceUpdate();
             })
         }
+    },
+   beforeCreate: function(){
+    
   },
   mounted:function(){
+      console.log(this.$store.pseudo);
     fetch("http://localhost:3004/utilisateurs")
         .then(reponse => reponse.json())
         .then(data => {
@@ -198,6 +213,13 @@ export default {
             });
             this.$forceUpdate();
     })
+    if (localStorage.getItem("loggedIn") === "true")  {
+        this.loggedIn = true
+        this.pseudo = localStorage.getItem("pseudoUser")
+    }else{
+        this.loggedIn = false
+        this.pseudo = ''
+    } 
   }
 }
 </script>

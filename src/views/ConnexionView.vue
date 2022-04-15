@@ -43,9 +43,11 @@ export default {
                   pseudo: user.pseudo,
                   email: user.email
                 }
+                console.log(commit);
                 this.$store.commit({type: 'setUserConnected' , user : commit})
-                if(this.$store.status == true){
-                  this.$emit('statusConnexion')
+                if (localStorage.getItem("loggedIn") === "true")  {
+                  this.$forceUpdate();
+                  this.$emit('update_loggedIn')
                   this.$router.push('/')
                 } 
               }

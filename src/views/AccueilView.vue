@@ -3,14 +3,14 @@
     <div class="row container">
         <div class="all">
             <div class="posts">
-                <Articles/>
+                <ArticlesView/>
             </div>
         </div>
     </div>
   </main>
 </template>
 <script>
-import Articles from '../components/ArticlesView.vue'
+import ArticlesView from '../components/ArticlesView.vue'
 export default {
     
     methods:{
@@ -18,8 +18,7 @@ export default {
             this.$forceUpdate()
         }
     },
-   
-    components:{Articles}
+    components:{ArticlesView}
 }
 </script>
 
